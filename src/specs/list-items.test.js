@@ -1,26 +1,27 @@
 import * as React from 'react';
-import { shallow  } from 'enzyme';
+import { shallow } from 'enzyme';
 import { ListItems } from '../src/list-items';
-import {  addItem, removeItem } from '../src/item';
+import { addItem, removeItem } from '../src/item';
 
 describe('List-items:', () => {
 	it('should render items', () => {
-		const ITEMS = [1, 2, 3]
-			.map(num => (
-				{ 
-					name: 'item' + num,
+		const ITEMS = [ 1, 2, 3 ]
+			.map(key => (
+				{
+					name: 'item' + key,
 					checked: false
 				})
 			)
 		;
 
-		const EXPECTED = [(
-			<ul>
+		/* eslint-disable react/jsx-key*/
+		const EXPECTED = [
+			(<ul>
 				<li key={1}>Name: item1 Checked: no</li>
 				<li key={2}>Name: item2 Checked: no</li>
 				<li key={3}>Name: item3 Checked: no</li>
-			</ul>
-		)];
+			</ul>)
+		];
 
 		const wrapper = shallow(<ListItems items={ITEMS}/>);
 		expect(wrapper.containsAllMatchingElements(EXPECTED)).toEqual(true);
@@ -33,7 +34,7 @@ describe('List-items:', () => {
 			name: 'foo',
 			checked: false
 		};
-		const EXPECTED = [ITEM];
+		const EXPECTED = [ ITEM ];
 
 		expect(addItem(ITEMS, ITEM)).toEqual(EXPECTED);
 	});
@@ -43,7 +44,7 @@ describe('List-items:', () => {
 			name: 'foo',
 			checked: true
 		};
-		const ITEMS = [ITEM];
+		const ITEMS = [ ITEM ];
 		const EXPECTED = [];
 
 		expect(removeItem(ITEMS, ITEM)).toEqual(EXPECTED);

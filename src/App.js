@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { createItem, itemComp, addItem } from './src/item';
+import { createItem, addItem } from './src/item';
 import { ListItems } from './src/list-items';
 
 // // TEMP: should be replaced by real data
@@ -13,7 +13,7 @@ import { ListItems } from './src/list-items';
 // 	)
 // ;
 
-let curItem;
+var curItem;
 
 class App extends Component {
 	constructor(props) {
@@ -33,9 +33,12 @@ class App extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		let createdItem = createItem(curItem);
-		let updatedItems = addItem(this.state.items, createdItem);
-		this.setState({ items: updatedItems });
+		const createdItem = createItem(curItem.value);
+		const updatedItems = addItem(this.state.items, createdItem);
+		const setItem = () => ({
+			items: updatedItems
+		});
+		this.setState(setItem);
 	}
 
 
