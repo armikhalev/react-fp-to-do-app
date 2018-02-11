@@ -3,9 +3,13 @@ import { shallow } from 'enzyme';
 import { ListItems } from '../src/list-items';
 import { addItem, removeItem } from '../src/item';
 
+const I = 1;
+const II = 2;
+const III = II + I;
+
 describe('List-items:', () => {
 	it('should render items', () => {
-		const ITEMS = [ 1, 2, 3 ]
+		const ITEMS = [ I, II, III ]
 			.map(key => (
 				{
 					name: 'item' + key,
@@ -16,11 +20,13 @@ describe('List-items:', () => {
 
 		/* eslint-disable react/jsx-key*/
 		const EXPECTED = [
-			(<ul>
-				<li key={1}>Name: item1 Checked: no</li>
-				<li key={2}>Name: item2 Checked: no</li>
-				<li key={3}>Name: item3 Checked: no</li>
-			</ul>)
+			(<div className='container'>
+				<ul>
+					<li key={I}>Name: item1 Checked: no</li>
+					<li key={II}>Name: item2 Checked: no</li>
+					<li key={III}>Name: item3 Checked: no</li>
+				</ul>
+			</div>)
 		];
 
 		const wrapper = shallow(<ListItems items={ITEMS}/>);

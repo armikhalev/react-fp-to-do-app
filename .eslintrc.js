@@ -56,7 +56,7 @@ module.exports = {
 		'no-labels': ['error'],
 		'no-lone-blocks': ['error'],
 		'no-loop-func': ['error'],
-		// 'no-magic-numbers': ['error', { 'ignore': [-1,0,1,2,100], 'detectObjects': false }], // allow some basic numbers // disable since it fails on nice initializations like 'var a = 100 * 100;'
+		'no-magic-numbers': ['error', { 'ignore': [-1,0,1,2,100], 'detectObjects': false }], // allow some basic numbers // disable since it fails on nice initializations like 'var a = 100 * 100;'
 		'no-multi-spaces': ['error'],
 		'no-multi-str': ['error'],
 		'no-native-reassign': ['error'],
@@ -125,9 +125,12 @@ module.exports = {
 		'semi': ['error', 'always'],
 		'sort-vars': ['error'],
 		'space-before-blocks': ['error', 'always'],
-		'space-before-function-paren': ['error', 'never']
+		'space-before-function-paren': ['error', 'never'],
 
 		// ECMAScript 6
 		// TODO
+
+		// REACT
+		'react/prop-types': ['off']
 	}
 };

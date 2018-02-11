@@ -2,16 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { createItem, addItem } from './src/item';
 import { ListItems } from './src/list-items';
-
-// // TEMP: should be replaced by real data
-// const ITEMS = [ 1, 2, 3 ]
-// 	.map(num => (
-// 		{
-// 			name: 'item' + num,
-// 			checked: false
-// 		})
-// 	)
-// ;
+// import * as R from 'Ramda';
 
 var curItem;
 
@@ -33,11 +24,13 @@ class App extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
+
 		const createdItem = createItem(curItem.value);
 		const updatedItems = addItem(this.state.items, createdItem);
 		const setItem = () => ({
 			items: updatedItems
 		});
+
 		this.setState(setItem);
 	}
 
