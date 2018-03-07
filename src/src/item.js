@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Checkbox from './checkbox';
 
 // createItem :: string -> Item
 export const createItem = (name) =>
@@ -6,7 +7,7 @@ export const createItem = (name) =>
     name,
     checked: false
   })
-  ;
+;
 
 // changeState :: Bool -> Bool
 export const changeState = (state) => !state;
@@ -14,7 +15,7 @@ export const changeState = (state) => !state;
 // addItem :: ([Item], Item) -> [Item]
 export const addItem = (arrItems, item) =>
   arrItems.concat(item)
-  ;
+;
 
 // removeItem :: ([Item], Item) -> [Item]
 export const removeItem = (arrItems, item) =>
@@ -22,7 +23,7 @@ export const removeItem = (arrItems, item) =>
     .filter(_item =>
       _item.name !== item.name
     )
-  ;
+;
 
 export const itemComp = (props) => {
   return (
@@ -33,8 +34,13 @@ export const itemComp = (props) => {
   );
 };
 
-export const ListItem = ({ name, checked }) => (
-  <li key={name}>
-    Name: {name} Checked: {checked ? 'yes' : 'no'}
+export const ListItem = ({ remove, id, name }) => (
+  <li key={name}
+    onClick={() => {
+      remove(id);
+    }}>
+    <Checkbox
+      label={name}
+      key={name} />
   </li>
 );
