@@ -2,10 +2,11 @@ import * as React from 'react';
 import Checkbox from './checkbox';
 
 // createItem :: string -> Item
-export const createItem = (name) =>
+export const createItem = (name, remove) =>
   ({
     name,
-    checked: false
+    checked: false,
+    remove
   })
 ;
 
@@ -34,13 +35,12 @@ export const itemComp = (props) => {
   );
 };
 
-export const ListItem = ({ remove, id, name }) => (
-  <li key={name}
-    onClick={() => {
-      remove(id);
-    }}>
+export const ListItem = ({ name, remove, isChecked }) => (
+  <li key={name}>
     <Checkbox
       label={name}
+      checked={isChecked}
       key={name} />
+    <button onClick={remove}>Remove</button>
   </li>
 );
