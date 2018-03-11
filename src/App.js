@@ -22,10 +22,27 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
 
+  // removeItem :: ([Item], Item) -> [Item]
+  removeItem(name) {
+    const updatedItems = this.state.items
+      .filter(_item =>
+        _item.name !== name
+      );
+
+    const setItem = () => ({
+      items: updatedItems
+    });
+
+    this.setState(setItem);
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
-    const createdItem = createItem(curItem.value);
+    const createdItem = createItem(
+      curItem.value,
+      this.removeItem.bind(this, curItem.value)
+    );
     const updatedItems = addItem(this.state.items, createdItem);
     const setItem = () => ({
       items: updatedItems
